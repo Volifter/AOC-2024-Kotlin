@@ -1,0 +1,6 @@
+/.gradle
+/build
+
+/inputs/*
+!/inputs/*_test.txt
+!/inputs/*_test_?.txt
