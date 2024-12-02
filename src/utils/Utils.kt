@@ -86,6 +86,12 @@ fun <T> Sequence<T>.asProgressing(): Sequence<T> =
   iterator().let { Sequence { it } }
 
 /*
+ * Returns a new list without the element at the given index
+ */
+fun <T> List<T>.withoutIndex(index: Int): List<T> =
+    filterIndexed { i, _ -> i != index }
+
+/*
  * Returns an intersection of two `IntRange`s
  */
 fun IntRange.intersectWith(other: IntRange): IntRange {
