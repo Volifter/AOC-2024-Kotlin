@@ -9,11 +9,7 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
     val manhattanDelta: Int get() = x.absoluteValue + y.absoluteValue
 
     val neighbors get() =
-        (y - 1..y + 1).asSequence().flatMap { newY ->
-            (x - 1..x + 1).mapNotNull { newX ->
-                Coords2D(newX, newY).takeIf { it != this }
-            }
-        }
+        Coords2D.directions.asSequence().map { direction -> this + direction }
 
     fun wrapIn(size: Coords2D): Coords2D =
         Coords2D(
@@ -37,6 +33,23 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
         Coords2D(x * ratio, y * ratio)
 
     companion object {
+        val directions = listOf(
+            Coords2D(0, 1),
+            Coords2D(-1, 1),
+            Coords2D(-1, 0),
+            Coords2D(-1, -1),
+            Coords2D(0, -1),
+            Coords2D(1, -1),
+            Coords2D(1, 0),
+            Coords2D(1, 1)
+        )
+
+        val directionsStraight = directions
+            .filter { (x, y) -> x == 0 || y == 0 }
+
+        val directionsDiagonal = directions
+            .filter { (x, y) -> x != 0 && y != 0 }
+
         fun iterate(size: Coords2D): Sequence<Coords2D> =
             (0..<size.y).asSequence().flatMap { y ->
                 (0..<size.x).asSequence().map { x ->
