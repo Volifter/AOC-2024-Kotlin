@@ -16,6 +16,7 @@ open class Day<T> {
 
     val exampleInputs = Path("inputs")
         .listDirectoryEntries("${dayName}_test*.txt")
+        .sortedBy { it.toString() }
         .takeIf { it.isNotEmpty() }
         ?.map { it.readLines() }
         ?: throw IllegalStateException(
