@@ -52,15 +52,8 @@ open class Day<T> {
             else -> throw IllegalArgumentException("Invalid part: $partId")
         }
 
-        if (outputs.size != exampleInputs.size)
-            throw Exception(
-                "Invalid amount of outputs: "
-                + "expected ${exampleInputs.size}, got ${outputs.size}"
-            )
+        println("PART ${Colors.YELLOW.code}$partId${Colors.RESET.code}:")
 
-        println(
-            "PART ${Colors.YELLOW.code}$partId${Colors.RESET.code}:"
-        )
         exampleInputs.zip(outputs).forEachIndexed { i, (input, expected) ->
             var got: T
             val time = measureTimeMillis { got = part(input) }
@@ -71,7 +64,9 @@ open class Day<T> {
         var got: T
         val time = measureTimeMillis { got = part(puzzleInput) }
 
-        println()
+        if (minOf(exampleInputs.size, outputs.size) > 0)
+            println()
+
         println(
             "  ${Colors.BLUE.code}Result${Colors.RESET.code}: "
             + "${Colors.YELLOW.code}$got "
