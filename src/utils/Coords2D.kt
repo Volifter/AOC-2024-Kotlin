@@ -32,6 +32,9 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
     operator fun times(ratio: Int): Coords2D =
         Coords2D(x * ratio, y * ratio)
 
+    operator fun div(ratio: Int): Coords2D =
+        Coords2D(x / ratio, y / ratio)
+
     companion object {
         val directions = listOf(
             Coords2D(0, 1),
