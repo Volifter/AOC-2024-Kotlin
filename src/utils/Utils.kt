@@ -49,7 +49,7 @@ fun getModularInverse(value: Long, mod: Long): Long {
 
     while (n > 1) {
         if (m == 0L)
-            throw Error("not inversible")
+            throw Error("not invertible")
 
         val (nextMod, nextN, nextX, nextY) = listOf(n % m, m, y, x - n / m * y)
 

@@ -10,9 +10,9 @@ class State(
     val direction: Coords2D
 ) {
     val next: State? get() = (position + direction).let { nextPosition ->
-        when {
-            nextPosition !in size -> null
-            nextPosition !in obstacles -> State(
+        when (nextPosition) {
+            !in size -> null
+            !in obstacles -> State(
                 obstacles,
                 size,
                 nextPosition,

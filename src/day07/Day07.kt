@@ -2,6 +2,8 @@ package day07
 
 import Day
 import kotlin.math.floor
+import kotlin.math.log10
+import kotlin.math.pow
 
 class Day07: Day<Long>() {
     fun parseInput(input: List<String>): List<Pair<Long, List<Long>>> =
@@ -36,12 +38,10 @@ class Day07: Day<Long>() {
             )
             || (
                 withConcatenation
-                && Math.pow(
-                    10.0,
-                    floor(Math.log10(last * 1.0)) + 1.0
-                ).toLong().let { pow10 ->
+                && 10.0.pow(floor(log10(last * 1.0)) + 1.0)
+                    .toLong().let { pow10 ->
                     target % pow10 == last
-                    && canBeSolved(target / pow10, head, withConcatenation)
+                    && canBeSolved(target / pow10, head, true)
                 }
             )
     }

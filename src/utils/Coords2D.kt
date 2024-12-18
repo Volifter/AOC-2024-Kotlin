@@ -9,7 +9,7 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
     val manhattanDelta: Int get() = x.absoluteValue + y.absoluteValue
 
     val neighbors get() =
-        Coords2D.directions.asSequence().map { direction -> this + direction }
+        directions.asSequence().map { direction -> this + direction }
 
     fun wrapIn(size: Coords2D): Coords2D =
         Coords2D(

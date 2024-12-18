@@ -8,14 +8,6 @@ data class DiskSpace(var id: Int?, var size: Int) {
 
     fun asSequence() = generateSequence(this) { it.next }
 
-    fun addLeft(other: DiskSpace) {
-        other.prev = prev
-        other.next = this
-
-        prev?.next = other
-        prev = other
-    }
-
     fun addRight(other: DiskSpace) {
         other.prev = this
         other.next = next
